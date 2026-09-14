@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Vibe & Compatibility Test ✨</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Great+Vibes&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 30px 25px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            animation: fadeIn 0.8s ease;
+        }
+
+        h2 {
+            font-size: 1.6rem;
+            color: #ff758c;
+            margin-bottom: 10px;
+        }
+
+        p.subtitle {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin-bottom: 25px;
+        }
+
+        .question-box {
+            display: none;
+        }
+
+        .question-box.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        .q-title {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #f1c40f;
+        }
+
+        .btn-option {
+            width: 100%;
+            padding: 12px 18px;
+            margin: 8px 0;
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 20px;
+            color: #fff;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-option:hover {
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
+            border-color: transparent;
+            transform: translateY(-2px);
+        }
+
+        /* Result Stage */
+        #resultStage {
+            display: none;
+        }
+
+        .score-title {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.5rem;
+            color: #ff758c;
+            margin: 10px 0;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            background: #25D366;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.03);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.6);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <!-- QUESTION 1 -->
+        <div class="question-box active" id="q1">
+            <h2>✨ Vibe Check ✨</h2>
+            <p class="subtitle">Answer 3 quick questions to check our vibe compatibility!</p>
+            <p class="q-title">1. What's your ideal weekend vibe?</p>
+            <button class="btn-option" onclick="nextQuestion(2, 'Cozy Coffee Date ☕')">Cozy Coffee Date ☕</button>
+            <button class="btn-option" onclick="nextQuestion(2, 'Late Night Drives 🚗')">Late Night Drives 🚗</button>
+            <button class="btn-option" onclick="nextQuestion(2, 'Movie Night at Home 🎬')">Movie Night at Home 🎬</button>
+        </div>
+
+        <!-- QUESTION 2 -->
+        <div class="question-box" id="q2">
+            <h2>✨ Question 2 ✨</h2>
+            <p class="subtitle">Almost there...</p>
+            <p class="q-title">2. Choose your favourite mood lifter:</p>
+            <button class="btn-option" onclick="nextQuestion(3, 'Good Music 🎵')">Good Music 🎵</button>
+            <button class="btn-option" onclick="nextQuestion(3, 'Chocolates & Food 🍫')">Chocolates & Food 🍫</button>
+            <button class="btn-option" onclick="nextQuestion(3, 'Deep Conversations 💬')">Deep Conversations 💬</button>
+        </div>
+
+        <!-- QUESTION 3 -->
+        <div class="question-box" id="q3">
+            <h2>✨ Final Question ✨</h2>
+            <p class="subtitle">Last step!</p>
+            <p class="q-title">3. If someone sent you a secret surprise, what would you do?</p>
+            <button class="btn-option" onclick="showResult('Text them back immediately 📲')">Text them back immediately 📲</button>
+            <button class="btn-option" onclick="showResult('Smile and wait for them to talk 😊')">Smile and wait for them to talk 😊</button>
+        </div>
+
+        <!-- RESULT STAGE -->
+        <div id="resultStage">
+            <h2>🎉 Compatibility Result 🎉</h2>
+            <div class="score-title">99% Match!</div>
+            <p style="font-size: 0.95rem; color: #ddd; line-height: 1.5;">
+                Whoa! Our vibes are ridiculously compatible! ✨<br>
+                Tap below to send your game results and reveal your WhatsApp to me! 😉
+            </p>
+            
+            <a id="waLink" class="whatsapp-btn" target="_blank">
+                💬 Send Results via WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <script>
+        let answers = [];
+
+        function nextQuestion(nextId, answer) {
+            answers.push(answer);
+            document.querySelectorAll('.question-box').forEach(el => el.classList.remove('active'));
+            document.getElementById('q' + nextId).classList.add('active');
+        }
+
+        function showResult(lastAnswer) {
+            answers.push(lastAnswer);
+            document.querySelectorAll('.question-box').forEach(el => el.style.display = 'none');
+            document.getElementById('resultStage').style.display = 'block';
+
+            // Confetti Effect
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+
+            // Construct WhatsApp Message
+            const myNumber = "94772199705";
+            const message = `Hey! I just played your Vibe Check game! 💖%0A%0AHere are my choices:%0A1. ${answers[0]}%0A2. ${answers[1]}%0A3. ${answers[2]}%0A%0AGuess our match score is 99%! Here is my WhatsApp... 😉`;
+            
+            const whatsappURL = `https://wa.me/${myNumber}?text=${message}`;
+            document.getElementById('waLink').href = whatsappURL;
+        }
+    </script>
+
+</body>
+</html>
