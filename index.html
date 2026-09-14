@@ -101,7 +101,7 @@
             width: 100%;
             padding: 15px;
             margin-top: 20px;
-            background: #25D366;
+            background: linear-gradient(45deg, #ff758c, #ff7eb3);
             color: #fff;
             font-size: 1.1rem;
             font-weight: 600;
@@ -109,13 +109,13 @@
             border-radius: 30px;
             cursor: pointer;
             text-decoration: none;
-            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            box-shadow: 0 8px 20px rgba(255, 117, 140, 0.4);
             transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .whatsapp-btn:hover {
             transform: scale(1.03);
-            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.6);
+            box-shadow: 0 12px 25px rgba(255, 117, 140, 0.6);
         }
 
         @keyframes fadeIn {
@@ -167,11 +167,11 @@
             <div class="score-title">100% Secret Match!</div>
             <p style="font-size: 0.95rem; color: #ddd; line-height: 1.6;">
                 Someone who created this quiz actually thinks you are super special... ✨<br>
-                <b>Tap below to claim your secret personality result and reveal who sent this! 🎁</b>
+                <b>Tap below to see who sent this and reveal your secret match! 🎁</b>
             </p>
             
             <a id="waLink" class="whatsapp-btn" target="_blank">
-                🎁 Unlock Secret Message on WhatsApp
+                🙈 See Who Has a Crush on Me
             </a>
         </div>
     </div>
@@ -197,7 +197,7 @@
             });
 
             const myNumber = "94772199705";
-            const message = `Hey! I took your secret quiz! 🙈%0A%0A1. Status: ${answers[0]}%0A2. If I knew: ${answers[1]}%0A3. Late night vibe: ${answers[2]}%0A%0ANow tell me... who created this secret match for me? 👀✨`;
+            const message = `Hey! I took your secret quiz! 🙈%0A%0A1. Status: ${answers[0]}%0A2. If I knew: ${answers[1]}%0A3. Late night vibe: ${answers[2]}%0A%0ANow tell me... who has a crush on me? 👀✨`;
             
             const whatsappURL = `https://wa.me/${myNumber}?text=${message}`;
             document.getElementById('waLink').href = whatsappURL;
